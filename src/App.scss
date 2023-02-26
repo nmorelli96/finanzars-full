@@ -1,0 +1,151 @@
+@import url('https://fonts.cdnfonts.com/css/product-sans');
+$table-green: rgba(24, 122, 24, 0.6);
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-family: 'Product Sans', sans-serif;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#fiatContainer,
+#bancosContainer,
+#cryptoContainer {
+  margin: 10px;
+}
+
+#fiatTitle,
+#bancosTitle,
+#cryptoTitle {
+  text-align: center;
+  text-shadow: 0px 0px 3px lightgrey;
+}
+
+table {
+  border: solid $table-green 10px;
+  border-spacing: 0;
+  border-radius: 10px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  margin: 5px 3px;
+  font-size: 1em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+table {
+  thead {
+    tr {
+      padding-top: 10px;
+      background-color: $table-green;
+      color: #ffffff;
+
+      th {
+        button {
+          border: none;
+          background-color: rgba(255, 255, 255, 0);
+          font-size: 0.95em;
+          color: white;
+          text-shadow: 1px 1px 2px darkgreen;
+        }
+      }
+    }
+  }
+}
+
+#fiatTable {
+
+  #fiatClock {
+    padding-bottom: 3px;
+    text-shadow: 0px 0px 5px darkgreen;
+  }
+
+  td {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  td:nth-child(odd) {
+    padding-left: 10px;
+  }
+
+  td:nth-child(even) {
+    padding-right: 10px;
+  }
+
+
+  tr:nth-child(6) {
+    td {
+      height: 3px;
+    }
+  }
+  tr:nth-child(7) {
+    background-color: #4da32b69;
+  }
+}
+
+#bancosTable, #cryptoTable {
+
+  .firstCol {
+    padding-left: 10px;
+  }
+  .lastCol {
+    padding-right: 5px;
+  }
+}
+
+#fiatHeader,
+#bancosHeader,
+#cryptoHeader {
+  border-top-width: 0 !important;
+}
+
+th {
+  font-weight: 400;
+  padding-bottom: 3px;
+}
+
+th button {
+  width: 100%;
+}
+
+td {
+  text-align: center;
+  min-width: 50px;
+  height: 25px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #9ebb9469;
+}
+
+tbody td:nth-child(1) {
+  text-align: left;
+  padding-left: 5px;
+}
+
+tbody td:nth-child(4) {
+  padding-right: 5px;
+  padding-left: 10px;
+}
+
+@media (max-width: 1000px) {
+  #fiatContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #app-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
