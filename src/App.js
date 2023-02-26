@@ -10,9 +10,9 @@ import Crypto from "./components/Crypto.js";
 let binance = [];
 let binanceDAI = {};
 let binanceUSDT = {};
-let fetchDomain = "http://localhost:4000";
+//let fetchDomain = "http://localhost:4000";
 //let fetchDomain = "https://uotjln-4000.preview.csb.app";
-//let fetchDomain = "https://finanzars-server.herokuapp.com";
+let fetchDomain = "https://finanzars.onrender.com";
 
 class App extends React.Component {
 	constructor(props) {
