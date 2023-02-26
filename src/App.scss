@@ -1,13 +1,29 @@
 @import url('https://fonts.cdnfonts.com/css/product-sans');
 $table-green: rgba(24, 122, 24, 0.6);
 
+#background {
+  content: "";
+  background: url("../public/flying-money3.png");
+  background-repeat: repeat;
+  filter: opacity(10%);
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  z-index: -1;
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  font-family: 'Product Sans', sans-serif;
+  font-family: "Product Sans", sans-serif;
+  z-index: 0;
+  position: relative;
 }
 
 #app-container {
@@ -25,7 +41,9 @@ body {
 #bancosTitle,
 #cryptoTitle {
   text-align: center;
-  text-shadow: 0px 0px 3px lightgrey;
+  text-shadow: 1px 1px 3px grey;
+  font-size: 1.05rem;
+  padding-bottom: 3px;
 }
 
 table {
@@ -37,6 +55,7 @@ table {
   margin: 5px 3px;
   font-size: 1em;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  background-color: white;
 }
 
 table {
