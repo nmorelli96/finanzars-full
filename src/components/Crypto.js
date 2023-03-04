@@ -14,9 +14,13 @@ class Crypto extends React.Component {
     return (
       <div>
         <div id="cryptoContainer">
-          <div id="cryptoTitle">Crypto</div>
           <table id="cryptoTable">
             <thead>
+              <tr>
+                <th colSpan={5} id="cryptoTitle">
+                  Crypto
+                </th>
+              </tr>
               <tr id="cryptoHeader">
                 <th>
                   <button
@@ -25,7 +29,14 @@ class Crypto extends React.Component {
                   >
                     Exchange{" "}
                     <i
-                      className={` fa-solid fa-xs ${sortCryptoConfig.key === "banco" ? sortIcon(sortCryptoConfig.key, sortCryptoConfig.direction) : "fa-sort"}`}
+                      className={` fa-solid fa-xs ${
+                        sortCryptoConfig.key === "banco"
+                          ? sortIcon(
+                              sortCryptoConfig.key,
+                              sortCryptoConfig.direction
+                            )
+                          : "fa-sort"
+                      }`}
                     ></i>
                   </button>
                 </th>
@@ -36,7 +47,14 @@ class Crypto extends React.Component {
                   >
                     Coin{" "}
                     <i
-                      className={` fa-solid fa-xs ${sortCryptoConfig.key === "coin" ? sortIcon(sortCryptoConfig.key, sortCryptoConfig.direction) : "fa-sort"}`}
+                      className={` fa-solid fa-xs ${
+                        sortCryptoConfig.key === "coin"
+                          ? sortIcon(
+                              sortCryptoConfig.key,
+                              sortCryptoConfig.direction
+                            )
+                          : "fa-sort"
+                      }`}
                     ></i>
                   </button>
                 </th>
@@ -47,7 +65,14 @@ class Crypto extends React.Component {
                   >
                     Compra{" "}
                     <i
-                      className={` fa-solid fa-xs ${sortCryptoConfig.key === "compra" ? sortIcon(sortCryptoConfig.key, sortCryptoConfig.direction) : "fa-sort"}`}
+                      className={` fa-solid fa-xs ${
+                        sortCryptoConfig.key === "compra"
+                          ? sortIcon(
+                              sortCryptoConfig.key,
+                              sortCryptoConfig.direction
+                            )
+                          : "fa-sort"
+                      }`}
                     ></i>
                   </button>
                 </th>
@@ -58,7 +83,14 @@ class Crypto extends React.Component {
                   >
                     Venta{" "}
                     <i
-                      className={` fa-solid fa-xs ${sortCryptoConfig.key === "venta" ? sortIcon(sortCryptoConfig.key, sortCryptoConfig.direction) : "fa-sort"}`}
+                      className={` fa-solid fa-xs ${
+                        sortCryptoConfig.key === "venta"
+                          ? sortIcon(
+                              sortCryptoConfig.key,
+                              sortCryptoConfig.direction
+                            )
+                          : "fa-sort"
+                      }`}
                     ></i>
                   </button>
                 </th>

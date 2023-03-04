@@ -14,9 +14,9 @@ class Bancos extends React.Component {
 
     return (
       <div id="bancosContainer">
-        <div id="bancosTitle">Bancos</div>
         <table id="bancosTable">
           <thead>
+            <tr><th colSpan={5} id="bancosTitle">Bancos</th></tr>
             <tr id="bancosHeader">
               <th>
                 <button
