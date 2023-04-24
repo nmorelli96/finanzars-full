@@ -12,6 +12,7 @@ const CotizacionesSchema = new Schema({
 
 let BancosSchema = new Schema({
   "plus": CotizacionesSchema,
+  "balanz": CotizacionesSchema,
   "cambioar": CotizacionesSchema,
   "bna": CotizacionesSchema,
   "rebanking": CotizacionesSchema,

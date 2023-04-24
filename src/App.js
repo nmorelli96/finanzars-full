@@ -66,6 +66,8 @@ class App extends React.Component {
 		return fetch(`${fetchDomain}/getBancos`)
 			.then((response) => response.json())
 			.then((responseJson) => {
+				responseJson[0]["Balanz"] = responseJson[0]["balanz"];
+        delete responseJson[0]["balanz"];
 				responseJson[0]["Hipotecario"] = responseJson[0]["hipotecario"];
         delete responseJson[0]["hipotecario"];
         responseJson[0]["ICBC"] = responseJson[0]["icbc"];
