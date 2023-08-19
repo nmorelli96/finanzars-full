@@ -12,7 +12,7 @@ let binanceDAI = {};
 let binanceUSDT = {};
 //let fetchDomain = "http://localhost:4000";
 //let fetchDomain = "https://uotjln-4000.preview.csb.app";
-let fetchDomain = "https://finanzars.onrender.com";
+let fetchDomain = "https://finanzars-dolar.onrender.com";
 
 class App extends React.Component {
 	constructor(props) {
@@ -109,7 +109,7 @@ class App extends React.Component {
 						id: i + 1,
 						banco: keyValue[i],
 						compra: api[keyValue[i]].bid,
-						venta: api[keyValue[i]].totalAsk / 1.65,
+						venta: api[keyValue[i]].totalAsk / 1.75,
 						ventaTot: api[keyValue[i]].totalAsk,
 						time: api[keyValue[i]].time
 					})
