@@ -1,6 +1,5 @@
 import express from "express";
 const app = express();
-//import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -13,6 +12,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import fetch from 'node-fetch';
 
+//import cors from "cors";
 app.use(express.static(path.resolve(__dirname, "../build")));
 //app.use(cors());
 
@@ -61,6 +61,16 @@ routeAPIs("/getBinanceDAIs", binanceSellDAI);
 routeAPIs("/getBinanceDAIb", binanceBuyDAI);
 routeAPIs("/getCryptos", cryptosModel);
 routeAPIs("/getUVA", bcraUVA);
+
+router.route("/nasdaq").get(async (req, res) => {
+  try {
+    const result = await fetchNasdaq();
+    res.json(result);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
 
 router.route("*").get( function (req, res) {
   res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
@@ -189,14 +199,60 @@ var fetchUVAOptions = {
   }
 }
 
-fetchFiat();
-fetchBancos();
-fetchBinance("buy", "usdt", binanceSellUSDT);
-fetchBinance("sell", "usdt", binanceBuyUSDT);
-fetchBinance("buy", "dai", binanceSellDAI);
-fetchBinance("sell", "dai", binanceBuyDAI);
-fetchCryptos();
-fetchUVA();
+
+/* Acciones USA */
+
+async function fetchNasdaq() {
+  const usaList = ["AMZN", "AAPL", "GOOGL", "KO", "NIO", "COIN", "PBR", "BB", "AMD", "BABA", "DIS", "MELI", "VIST", "TSLA", "SHOP", "MSFT", "JNJ", "BBD", "INTC", "AGRO", "NKE", "NVDA", "HMY", "UPST", "VALE", "AXP", "TS", "OXY", "BRK/B", "T", "ABNB", "ARCO", "GOLD", "META", "BRFS", "PYPL", "BITF", "SE", "X", "GLOB", "PFE", "PAAS", "BAC", "SATL", "ZM", "JMIA", "CAAP", "WMT", "C", "HUT", "JPM", "ETSY", "QCOM", "XOM", "PG", "TGT", "ERJ", "MMM", "WFC", "JD", "TEF", "ITUB", "VZ", "GE", "MO", "MCD", "WBA", "HD", "AZN", "ERIC", "COST", "V", "HSY", "CDE", "CVX", "TWLO", "TSM", "SPOT", "NFLX", "SQ", "TRIP", "CAT", "TX", "CRM", "BA", "BIDU", "BG", "DOCU", "PEP", "DESP", "ADBE", "FSLR", "GM", "MU", "AAL", "UNH", "LYG", "BIOX", "MOS", "NUE", "LRCX", "RIO", "IBM", "ABBV", "SBS", "PSX", "NG", "ABEV", "UAL", "F", "UL", "GGB", "FCX", "MSTR", "AIG", "CSCO", "MA", "AMGN", "BP", "XP", "HOG", "CBD", "PHG", "SONY", "DE", "SBUX", "LMT", "UGP", "SHEL", "MRK", "CX", "USB", "SID", "SNOW", "NEM", "TXN", "GSK", "PANW", "BBVA", "ABT", "NOK", "MSI", "TMO", "DOW", "EBAY", "HON", "SPGI", "YY", "RBLX", "INFY", "FDX", "SNAP", "SAN", "ORCL", "LLY", "ADI", "TM", "GS", "DD", "BHP", "EBR", "HL", "NTES", "HAL", "VOD", "NTCO", "PKX", "AEM", "GLW", "UBER", "GPRK", "TTE", "SLB", "AMAT", "UNP", "GILD", "GFI", "WB", "RTX", "BIIB", "ELP", "PBI", "XRX", "ORAN", "HDB", "SYY", "BSBR", "TV", "EA", "HSBC", "AVY", "BK", "CL", "CAH", "AKO/B", "MDT", "E", "KMB", "SCCO", "IBN", "KB", "GRMN"];
+
+  try {
+    console.log("pre-fetch");
+    const response = await fetch('https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25&offset=100&download=true', {
+      method: 'GET',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    });
+    console.log("post-fetch")
+
+    if (response.ok) {
+      const jsonData = await response.json();
+      if (jsonData && "data" in jsonData && "rows" in jsonData.data) {
+        const filteredRows = jsonData.data.rows.filter(row => usaList.includes(row.symbol));
+        const filteredData = {
+          data: {
+            asOf: null,
+            headers: jsonData.data.headers,
+            rows: filteredRows,
+          },
+        };
+        res.json(filteredData);
+      } else {
+        res.status(500).json({ error: "Invalid JSON response format" });
+      }
+    } else {
+      res.status(500).json({ error: "Request failed" });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+}
+
+
+
+/* Acciones USA */
+
+
+//fetchFiat();
+//fetchBancos();
+//fetchBinance("buy", "usdt", binanceSellUSDT);
+//fetchBinance("sell", "usdt", binanceBuyUSDT);
+//fetchBinance("buy", "dai", binanceSellDAI);
+//fetchBinance("sell", "dai", binanceBuyDAI);
+//fetchCryptos();
+//fetchUVA();
 
 setInterval(function () {
   fetchFiat();
