@@ -210,8 +210,11 @@ async function fetchNasdaq() {
     const response = await fetch('https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25&offset=100&download=true', {
       method: 'GET',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.69',
-        'X-Requested-With': 'XMLHttpRequest',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Connection': 'keep-alive',
       },
     });
     console.log("post-fetch")
@@ -244,14 +247,14 @@ async function fetchNasdaq() {
 /* Acciones USA */
 
 
-//fetchFiat();
-//fetchBancos();
-//fetchBinance("buy", "usdt", binanceSellUSDT);
-//fetchBinance("sell", "usdt", binanceBuyUSDT);
-//fetchBinance("buy", "dai", binanceSellDAI);
-//fetchBinance("sell", "dai", binanceBuyDAI);
-//fetchCryptos();
-//fetchUVA();
+fetchFiat();
+fetchBancos();
+fetchBinance("buy", "usdt", binanceSellUSDT);
+fetchBinance("sell", "usdt", binanceBuyUSDT);
+fetchBinance("buy", "dai", binanceSellDAI);
+fetchBinance("sell", "dai", binanceBuyDAI);
+fetchCryptos();
+fetchUVA();
 
 setInterval(function () {
   fetchFiat();
