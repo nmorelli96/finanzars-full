@@ -210,7 +210,7 @@ async function fetchNasdaq() {
     const response = await fetch('https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25&offset=100&download=true', {
       method: 'GET',
       headers: {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.69',
         'X-Requested-With': 'XMLHttpRequest',
       },
     });
@@ -227,16 +227,15 @@ async function fetchNasdaq() {
             rows: filteredRows,
           },
         };
-        res.json(filteredData);
+        return filteredData;
       } else {
-        res.status(500).json({ error: "Invalid JSON response format" });
+        throw new Error("Invalid JSON response format");
       }
     } else {
-      res.status(500).json({ error: "Request failed" });
+      throw new Error("Request failed");
     }
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "An error occurred" });
+    throw error;
   }
 }
 
